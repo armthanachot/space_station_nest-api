@@ -21,6 +21,10 @@ export class UserService {
     const result = await this.userRepo.find()
     return result
   }
+  async findById(id){
+    const result = await this.userRepo.findOne({id})
+    return result
+  }
   async encryptPassword(password) {
     const encrypted = await bcrypt.hash(password, SALTORROUND);
     return encrypted;
@@ -30,7 +34,7 @@ export class UserService {
     return isCorrect;
   }
   async generateToken({ fname, lname, email }) {
-    const role_index = await Math.floor(Math.random() * 3) + 1
+    const role_index = await Math.floor(Math.random() * 3)
     console.log(role_index);
       
     const roles  = Object.values(ROLES)

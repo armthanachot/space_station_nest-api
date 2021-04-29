@@ -27,5 +27,6 @@ export class AppModule implements NestModule {
     const {GET,POST,PUT,DELETE,ALL} = RequestMethod
     const {ADMIN,DEV,USER} = ROLES
     consumer.apply(await verifyToken([ADMIN,USER])).forRoutes({path:'user',method:GET})
+    consumer.apply(await verifyToken([DEV])).forRoutes({path:'user/:id',method:GET})
   }
 }

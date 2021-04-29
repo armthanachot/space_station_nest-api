@@ -72,4 +72,17 @@ export class UserController {
       
     }
   }
+
+  @Get(":id")
+  async findById(@Req() req: Request, @Res() res: Response){
+    try {
+        const {id} = req.params
+        const user  = this.userService.findById(id)
+        return res.status(200).json({data:user})      
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ message: "INTERNAL SERVER ERROR" });
+      
+    }
+  }
 }
